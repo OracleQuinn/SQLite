@@ -15,3 +15,5 @@ dodatkowo mamy 3 różne kryteria wyszukiwania wybierane z menu
 rozwijanego. W GUI mamy też dodatkowy przycisk checkbox – jeżeli
 jest ustawiony na TRUE, to wyszukujemy tylko jeden rekord z bazy
 danych. W przeciwnym wypadku wszystkie spełniające kryteria.
+
+Zostało mi posortować jeszcze na mężczyzn i kobiety oraz ustawić wyświetlanie jednego rekodu.
