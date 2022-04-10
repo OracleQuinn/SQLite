@@ -3,11 +3,12 @@
     <string name="customer_name">Customer Name</string>
     <string name="customer_surname">Customer Surname</string>
     <string name="customer_country">Customer Country</string>
-    <string name="customer_sex">Customer Sex</string>
     <string name="customer_phone_number">Customer Phone Number</string>
     <string name="insert">INSERT</string>
     <string name="view_all">VIEW ALL</string>
     <string name="view_female">VIEW FEMALE</string>
     <string name="view_male">VIEW MALE</string>
     <string name="one_person">One person</string>
+    <string name="female">FEMALE</string>
+    <string name="male">MALE</string>
 </resources>
