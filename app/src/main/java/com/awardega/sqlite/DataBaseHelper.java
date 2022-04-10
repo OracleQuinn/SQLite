@@ -2,11 +2,12 @@ package com.awardega.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -62,6 +63,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public List<CustomerModel> getEveryOne(){
+        List<CustomerModel> returnList = new ArrayList<>();
 
+        String queryString = "SELECT * FROM " + CUSTOMER_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToFirst()){
+            do{
+                int customerID = cursor.getInt(0);
+                String customerName = cursor.getString(1);
+                String customerSurname = cursor.getString(2);
+                String customerCountry = cursor.getString(3);
+                String customerSex = cursor.getString(4);
+                int customerPhoneNumber = cursor.getInt(5);
+
+                CustomerModel newCustomer = new CustomerModel(customerID, customerName, customerSurname, customerCountry, customerSex, customerPhoneNumber);
+                returnList.add(newCustomer);
+
+            }while(cursor.moveToNext());
+        }
+        else{
+
+        }
+        cursor.close();
+        db.close();
+        return returnList;
     }
 }

@@ -14,6 +14,8 @@ import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     Button btn_insert;
     CheckBox chb_onePerson;
@@ -79,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
         rb_viewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "View all customer", Toast.LENGTH_SHORT).show();
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                List<CustomerModel> everyone = dataBaseHelper.getEveryOne();
+
+                Toast.makeText(MainActivity.this, everyone.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
