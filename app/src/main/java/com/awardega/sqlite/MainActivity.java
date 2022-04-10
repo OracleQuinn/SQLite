@@ -3,6 +3,7 @@ package com.awardega.sqlite;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -11,9 +12,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rb_viewMale;
     ListView lv_customerView;
     String tx_sex;
+    ArrayAdapter customerArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                 List<CustomerModel> everyone = dataBaseHelper.getEveryOne();
 
-                Toast.makeText(MainActivity.this, everyone.toString(), Toast.LENGTH_SHORT).show();
+                customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, everyone);
+                lv_customerView.setAdapter(customerArrayAdapter);
             }
         });
 

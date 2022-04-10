@@ -27,7 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableStatement = "CREATE TABLE " + CUSTOMER_TABLE + " (" +COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+        String createTableStatement = "CREATE TABLE " + CUSTOMER_TABLE + " (" +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_CUSTOMER_NAME + " TEXT,"
                 + COLUMN_CUSTOMER_SURNAME + " TEXT,"
                 + COLUMN_CUSTOMER_COUNTRY + " TEXT,"
