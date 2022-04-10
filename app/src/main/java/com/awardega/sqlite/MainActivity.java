@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     CustomerModel customerModel = new CustomerModel(-1, "Joe", "Doe", "Earth", "Male", Integer.parseInt("123456789"));
                     Toast.makeText(MainActivity.this, customerModel.toString(), Toast.LENGTH_SHORT).show();
                 }
+
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
             }
         });
 

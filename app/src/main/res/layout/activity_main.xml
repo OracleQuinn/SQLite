@@ -141,13 +141,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/view_male"
-        android:textColor="#F0F3F4"
+        android:textColor="#FFFFFF"
         android:textColorHighlight="#00BCD4"
         android:textColorHint="#FBFBFB"
         android:textColorLink="#00BCD4"
         android:textOff="@string/male"
         android:textOn="@string/female"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_country" />
+        app:layout_constraintTop_toBottomOf="@+id/et_country"
+        tools:ignore="TextContrastCheck,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
