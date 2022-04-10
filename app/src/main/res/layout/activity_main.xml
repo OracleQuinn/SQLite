@@ -57,28 +57,9 @@
         app:layout_constraintTop_toBottomOf="@+id/et_surname" />
 
     <EditText
-        android:id="@+id/et_sex"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:autofillHints=""
-        android:hint="@string/customer_sex"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_country" />
-
-    <EditText
         android:id="@+id/et_phoneNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/customer_phone_number"
@@ -87,7 +68,7 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_sex" />
+        app:layout_constraintTop_toBottomOf="@+id/tb_sex" />
 
     <Button
         android:id="@+id/btn_insert"
@@ -100,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_phoneNumber" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/rg_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -139,7 +120,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_view" />
 
     <CheckBox
         android:id="@+id/chb_onePerson"
@@ -149,8 +130,24 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/one_person"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintEnd_toStartOf="@+id/rg_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_insert" />
+
+    <ToggleButton
+        android:id="@+id/tb_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/view_male"
+        android:textColor="#F0F3F4"
+        android:textColorHighlight="#00BCD4"
+        android:textColorHint="#FBFBFB"
+        android:textColorLink="#00BCD4"
+        android:textOff="@string/male"
+        android:textOn="@string/female"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_country" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
