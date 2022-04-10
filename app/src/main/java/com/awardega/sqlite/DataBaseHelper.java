@@ -1,10 +1,13 @@
 package com.awardega.sqlite;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -35,6 +38,30 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+
+    public boolean addOne(CustomerModel customerModel){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_CUSTOMER_NAME, customerModel.getName());
+        cv.put(COLUMN_CUSTOMER_SURNAME, customerModel.getSurname());
+        cv.put(COLUMN_CUSTOMER_COUNTRY, customerModel.getCountry());
+        cv.put(COLUMN_CUSTOMER_SEX, customerModel.getSex());
+        cv.put(COLUMN_CUSTOMER_PHONENUMBER, customerModel.getPhoneNumber());
+
+        long insert = db.insert(CUSTOMER_TABLE, null, cv);
+
+        if (insert == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public List<CustomerModel> getEveryOne(){
 
     }
 }
