@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,11 +82,63 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        else{
 
-        }
         cursor.close();
         db.close();
         return returnList;
+    }
+
+    public List<CustomerModel> getFemale(){
+        List<CustomerModel> returnListOfFemale = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + CUSTOMER_TABLE + " WHERE " + COLUMN_CUSTOMER_SEX + " LIKE 'Female';";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToFirst()){
+            do{
+                int customerID = cursor.getInt(0);
+                String customerName = cursor.getString(1);
+                String customerSurname = cursor.getString(2);
+                String customerCountry = cursor.getString(3);
+                String customerSex = cursor.getString(4);
+                int customerPhoneNumber = cursor.getInt(5);
+
+                CustomerModel newCustomer = new CustomerModel(customerID, customerName, customerSurname, customerCountry, customerSex, customerPhoneNumber);
+                returnListOfFemale.add(newCustomer);
+
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return returnListOfFemale;
+    }
+
+    public List<CustomerModel> getMale(){
+        List<CustomerModel> returnListOfMale = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + CUSTOMER_TABLE + " WHERE " + COLUMN_CUSTOMER_SEX + " LIKE 'Male';";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToFirst()){
+            do{
+                int customerID = cursor.getInt(0);
+                String customerName = cursor.getString(1);
+                String customerSurname = cursor.getString(2);
+                String customerCountry = cursor.getString(3);
+                String customerSex = cursor.getString(4);
+                int customerPhoneNumber = cursor.getInt(5);
+
+                CustomerModel newCustomer = new CustomerModel(customerID, customerName, customerSurname, customerCountry, customerSex, customerPhoneNumber);
+                returnListOfMale.add(newCustomer);
+
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return returnListOfMale;
     }
 }
