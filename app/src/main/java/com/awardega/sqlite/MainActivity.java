@@ -1,6 +1,7 @@
 package com.awardega.sqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lv_customerView;
     String tx_sex;
     ArrayAdapter customerArrayAdapter;
+    ArrayAdapter firstCustomerArrayAdapter;
+    Boolean onePerson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         rb_viewFemale = (RadioButton) findViewById(R.id.rb_viewFemale);
         rb_viewMale = (RadioButton) findViewById(R.id.rb_viewMale);
         lv_customerView = (ListView) findViewById(R.id.lv_customerView);
+        onePerson = false;
 
         tb_sex.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -52,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
                     tx_sex = "Female";
                 } else {
                     tx_sex = "Male";
+                }
+            }
+        });
+
+        chb_onePerson.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    onePerson = true;
+                }
+                else {
+                    onePerson = false;
                 }
             }
         });
@@ -84,21 +101,62 @@ public class MainActivity extends AppCompatActivity {
                 List<CustomerModel> everyone = dataBaseHelper.getEveryOne();
 
                 customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, everyone);
-                lv_customerView.setAdapter(customerArrayAdapter);
+                firstCustomerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, Collections.singletonList(everyone.get(0)));
+
+                try {
+                    if (onePerson == false) {
+                        lv_customerView.setAdapter(customerArrayAdapter);
+                    } else {
+                        lv_customerView.setAdapter(firstCustomerArrayAdapter);
+                    }
+                }
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this, "Error :(", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         rb_viewFemale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "View female customer", Toast.LENGTH_SHORT).show();
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                List<CustomerModel> female = dataBaseHelper.getFemale();
+
+                customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, female);
+                firstCustomerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, Collections.singletonList(female.get(0)));
+
+                try {
+                    if (onePerson == false) {
+                        lv_customerView.setAdapter(customerArrayAdapter);
+                    } else {
+                        lv_customerView.setAdapter(firstCustomerArrayAdapter);
+                    }
+                }
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this, "Error :(", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         rb_viewMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "View male customer", Toast.LENGTH_SHORT).show();
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                List<CustomerModel> male = dataBaseHelper.getMale();
+
+                customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, male);
+                firstCustomerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, Collections.singletonList(male.get(0)));
+
+                try {
+                    if (onePerson == false) {
+                        lv_customerView.setAdapter(customerArrayAdapter);
+                    } else {
+                        lv_customerView.setAdapter(firstCustomerArrayAdapter);
+                    }
+                }
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this, "Error :(", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
