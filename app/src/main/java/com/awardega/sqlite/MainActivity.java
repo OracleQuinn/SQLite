@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         rb_viewMale = (RadioButton) findViewById(R.id.rb_viewMale);
         lv_customerView = (ListView) findViewById(R.id.lv_customerView);
         onePerson = false;
+        tx_sex = "Male";
 
         tb_sex.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
